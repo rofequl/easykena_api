@@ -149,7 +149,7 @@ class AuthController extends Controller
             return response()->json(['errors' => 'Invalid phone number'], 422);
         }
         $verification_code = CommonHelper::generateOTP(6);
-        //$this->sendMessage($number, $verification_code);
+        $this->sendMessage($number, $verification_code);
 
         $this->saveVerify($number, $verification_code);
     }
