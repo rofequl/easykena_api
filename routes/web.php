@@ -31,6 +31,7 @@ $router->group(['middleware' => 'auth:api'], function () use ($router) {
 
     //Address Book
     $router->get('address', 'AddressController@index');
+    $router->get('address_user/{user_id}', 'AddressController@addressByuser');
     $router->post('address', 'AddressController@store');
     $router->put('address/{id}', 'AddressController@update');
     $router->delete('address/{id}', 'AddressController@destroy');
@@ -104,28 +105,3 @@ $router->get('area', 'AreaController@index');
 $router->group(['middleware' => 'JWTRefresh', 'namespace' => 'User'], function () use ($router) {
     $router->post('token/refresh', 'AuthController@refresh');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
