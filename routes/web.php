@@ -34,6 +34,7 @@ $router->group(['middleware' => 'auth:api'], function () use ($router) {
     $router->get('address_user/{user_id}', 'AddressController@addressByuser');
     $router->post('address', 'AddressController@store');
     $router->put('address/{id}', 'AddressController@update');
+    $router->put('address_shipping/{id}', 'AddressController@update_shipping');
     $router->delete('address/{id}', 'AddressController@destroy');
 
     //Setup & Configurations
