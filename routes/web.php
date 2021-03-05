@@ -80,6 +80,21 @@ $router->group(['middleware' => 'auth:api'], function () use ($router) {
     $router->put('area/{id}', 'AreaController@update');
     $router->delete('area/{id}', 'AreaController@destroy');
 
+    //orders
+    $router->get('orders', 'OrderController@index');
+      $router->get('orders_by_user', 'OrderController@orders_by_user');
+    $router->get('orders_details/{id}', 'OrderController@orders_details');
+    $router->post('orders', 'OrderController@store');
+    $router->put('orders_status_change/{id}', 'OrderController@orders_status_change');
+    $router->delete('orders/{id}', 'OrderController@destroy');
+
+    //coupons
+    $router->get('coupons', 'CouponController@index');
+    $router->get('coupon_code_get/{code}', 'CouponController@coupon_code_get');
+    $router->post('coupons', 'CouponController@store');
+    $router->put('coupons/{id}', 'CouponController@update');
+    $router->delete('coupons/{id}', 'CouponController@destroy');
+
 
 });
 
