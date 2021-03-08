@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        return DB::table('products')->get();
+        return Product::get();
     }
 
     public function store(Request $request)
@@ -48,6 +48,7 @@ class ProductController extends Controller
             'slug' => $slug,
             'thumb_image' => $thumbnail,
             'sku' => $this->sku(),
+            'tags'=>json_encode($request->tags),
             'user_id' => Auth::user()->id,
         ]);
         return Product::findOrFail($insert);

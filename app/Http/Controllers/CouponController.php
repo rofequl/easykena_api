@@ -11,19 +11,18 @@ class CouponController extends Controller
 
     public function index(Request $request)
     {
-        return (array)DB::table('coupons')->get();
+        return DB::table('coupons')->get();
     }
 
     public function coupon_code_get($code)
     {
-      // return $code;
         return (array)DB::table('coupons')->where('coupon_code',$code)->first();
     }
     public function store(Request $request)
     {
 
         $this->validate($request, [
-            'coupon_code' => 'required|string|max:50',
+            'coupon_code' => 'required|string|unique:coupons,coupon_code,max:50',
             'discount_amount' => 'required',
             'date_from' => 'required|date',
             'date_to' => 'required|date',
@@ -43,7 +42,7 @@ class CouponController extends Controller
     {
 
       $this->validate($request, [
-          'coupon_code' => 'required|string|max:50',
+          'coupon_code' => 'required|string|unique:coupons,coupon_code,'.$id.'|max:50',
           'discount_amount' => 'required',
           'date_from' => 'required|date',
           'date_to' => 'required|date',
@@ -63,7 +62,6 @@ class CouponController extends Controller
     public function destroy($id)
     {
         $coupon = DB::table('coupons')->where('id',$id)->delete();
-        //File::delete(base_path('public/' . $brand->logo));
-        // $coupon->delete();
+
     }
 }
